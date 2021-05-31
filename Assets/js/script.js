@@ -6,7 +6,17 @@
 
 
 
+//function variables
+
+
+var passwordLength;
+var uppercaseCheck;
+var numberCheck;
+var specCheck;
+
+
 //password criteria variables 
+
 var specialcase = "!@#$%^&*()_+=-[]{}\|;:'<>?/";
 var numbercase = "1234567890";
 var uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -25,7 +35,7 @@ var lowercase = "abcdefghijklmnopqrstuvwxyz";
         passLength();
       } else if (isNaN(passwordLength)) {
         alert("Password length must be between 8-128 characters");
-        passwordLength();
+        passLength();
       } else {
         alert("Select the following criteria for you password.");
       }
@@ -43,7 +53,7 @@ var lowercase = "abcdefghijklmnopqrstuvwxyz";
           uppercaseCheck = true;
           return uppercaseCheck;
         } else if (uppercaseCheck === "no" ||  uppercaseCheck === "n") {
-          uppercaseCheck = fasle;
+          uppercaseCheck = false;
           return uppercaseCheck;
         } else {
           alert("Please answer 'yes' or 'no'");
@@ -52,7 +62,7 @@ var lowercase = "abcdefghijklmnopqrstuvwxyz";
         return uppercaseCheck;
       }
 
-  // function to determin numbers criteria
+  // function to determine numbers criteria
       function passNum() {
         numberCheck = prompt("Do you want to include numbers in your password? (Yes or No)");
         numberCheck = numberCheck.toLowerCase();
@@ -76,9 +86,9 @@ var lowercase = "abcdefghijklmnopqrstuvwxyz";
     // function to determine special characters criteria
       function passSpecChar() {
         specCheck = prompt("Do you want to include special characters in your password? (Yes or No");
-        specCheck = specCheck.toLowerCase;
+        specCheck = specCheck.toLowerCase();
 
-        if (specCheck === nill || specCheck === "") {
+        if (specCheck === null || specCheck === "") {
           alert("Please answer 'yes' or 'no'");
           passSpecChar();
         } else if (specCheck === "yes" || specCheck === "y") {
@@ -97,7 +107,7 @@ var lowercase = "abcdefghijklmnopqrstuvwxyz";
     
 
     
-
+//Put together previous returns to generate new password
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
@@ -108,13 +118,55 @@ function writePassword() {
   console.log(passwordLength);
   passCase();
   console.log(uppercaseCheck);
+  passNum();
+  console.log(numberCheck);
+  passSpecChar();
+  console.log(specCheck);
 
-  var password = generatePassword();
+  //all possible slected criterion combinations
+  
+  var characters = lowercase;
+  //var password = "";
+
+  if (uppercaseCheck && numberCheck && specCheck) {
+    characters += specialcase += numbercase += uppercase;
+
+  } else if (numberCheck && specCheck) {
+    characters += numbercase += uppercase;
+
+  } else if (numberCheck && uppercaseCheck) {
+    characters += numbercase += specialcase;
+
+  } else if (uppercaseCheck && specCheck) {
+    characters += specialcase += uppercase;
+
+  } else if (uppercaseCheck) {
+    characters += specialcase;
+
+  } else if (numberCheck) {
+    characters += numbercase;
+
+  } else if (specCheck) {
+    characters += specialcase;
+
+  } else {
+    characters === lowercase
+  }
+
+  //actual function loop with all specified password parameters 
+    for(var i = 0; i < passLength; i++) {
+      password += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+    return password;
+  }
+    // write password to the #password input 
+    function generatePassword() {
+  //var password = "";
+   var password = writePassword();
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
-
-}
+    }
 
 // Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+generateBtn.addEventListener("click", generatePassword);
