@@ -15,8 +15,8 @@ var lowercase = "abcdefghijklmnopqrstuvwxyz";
 //password variable prompts
 
   // length funciton
-    function passLength(){
-      passwordLength = prompt("Choose passworf character length. (Between 8-128 characters)");
+    function passLength() {
+      passwordLength = prompt("Choose password character length. (Between 8-128 characters)");
       if (passwordLength < 8) {
         alert("Password length must be between 8-128 characters");
         passLength();
@@ -33,9 +33,31 @@ var lowercase = "abcdefghijklmnopqrstuvwxyz";
     }
 
   // function to determine uppercase/lowercase criteria
-    function passCase() {
-      
-    }
+      function passCase() {
+      caseCheck = prompt("Do you want to include uppercase letters in your password? (Yes or No)");
+      uppercaseCheck = caseCheck.toLowerCase();
+        if (uppercaseCheck === null || uppercaseCheck ==="") {
+          alert("Please enter 'yes' or 'no'");
+          caseCheck();
+        } else if (uppercaseCheck === "yes" || uppercaseCheck === "y") {
+          uppercaseCheck = true;
+          return uppercaseCheck;
+        } else if (uppercaseCheck === "no" ||  uppercaseCheck === "n") {
+          uppercaseCheck = fasle;
+          return uppercaseCheck;
+        } else {
+          alert("Please answer 'yes' or 'no'");
+          passCase();
+        }
+        return uppercaseCheck;
+      }
+
+  // function to determin numbers criteria
+      function passNum() {
+        
+      }
+
+    
 
 
 // Get references to the #generate element
@@ -43,6 +65,10 @@ var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
+  passLength();
+  console.log(passwordLength);
+  passCase();
+  console.log(uppercaseCheck);
 
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
