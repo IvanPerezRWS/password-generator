@@ -54,8 +54,47 @@ var lowercase = "abcdefghijklmnopqrstuvwxyz";
 
   // function to determin numbers criteria
       function passNum() {
-        
+        numberCheck = prompt("Do you want to include numbers in your password? (Yes or No)");
+        numberCheck = numberCheck.toLowerCase();
+
+        if (numberCheck === null || numberCheck === "") {
+          alert("Please answer 'yes' or 'no'");
+          passNum();
+        } else if (numberCheck === "yes" || numberCheck === "y") {
+        numberCheck = true;
+        return numberCheck;
+      } else if (numberCheck === "no" || numberCheck === "n") {
+        numberCheck = false;
+        return numberCheck;
+      } else {
+        alert("Please enter 'yes' or 'no'");
+        passNum();
       }
+      return numberCheck;
+    }
+
+    // function to determine special characters criteria
+      function passSpecChar() {
+        specCheck = prompt("Do you want to include special characters in your password? (Yes or No");
+        specCheck = specCheck.toLowerCase;
+
+        if (specCheck === nill || specCheck === "") {
+          alert("Please answer 'yes' or 'no'");
+          passSpecChar();
+        } else if (specCheck === "yes" || specCheck === "y") {
+        specCheck = true;
+        return specCheck;
+        } else if (specCheck === "no" || specCheck === "n") {
+          specCheck = false;
+          return specCheck;
+        } else {
+          alert("Please enter 'yes' or 'no'");
+          passSpecChar();
+        }
+        return specCheck;
+      }  
+    
+    
 
     
 
