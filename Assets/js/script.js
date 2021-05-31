@@ -14,6 +14,30 @@ var lowercase = "abcdefghijklmnopqrstuvwxyz";
 
 //password variable prompts
 
+  // length funciton
+    function passLength(){
+      passwordLength = prompt("Choose passworf character length. (Between 8-128 characters)");
+      if (passwordLength < 8) {
+        alert("Password length must be between 8-128 characters");
+        passLength();
+      } else if (passwordLength > 128) {
+        alert("Password length must be between 8-128 characters");
+        passLength();
+      } else if (isNaN(passwordLength)) {
+        alert("Password length must be between 8-128 characters");
+        passwordLength();
+      } else {
+        alert("Select the following criteria for you password.");
+      }
+      return passwordLength;
+    }
+
+  // function to determine uppercase/lowercase criteria
+    function passCase() {
+      
+    }
+
+
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
